@@ -17,11 +17,33 @@ namespace AlgorithmDemo2021.BinarySearch
             high = sortedListItems.Length - 1;
         }
 
+        /// <summary>
+        /// used to search an intger list for a specific number
+        /// </summary>
+        /// <param name="itemToFind">number to be searched</param>
+        /// <returns>returns 1 if the item is found and -1 if it is not found</returns>
+
         public int geSearchResult(int itemToFind)
         {
+            int result;
+            while(low <= high)
+            {
+                mid = (low + high) / 2;
+                result = searchList[mid];
 
+                if (result == itemToFind)
+                    return 1;
 
-            throw new NotImplementedException();
+                if(result < itemToFind)
+                {
+                    low = mid + 1;
+                }
+                else
+                {
+                    high = mid - 1;
+                }
+            }
+            return - 1;
         }
     }
 }
