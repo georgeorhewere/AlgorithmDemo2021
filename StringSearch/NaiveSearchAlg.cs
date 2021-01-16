@@ -10,14 +10,14 @@ namespace AlgorithmDemo2021.StringSearch
         {
             int startIndex = 0;
             int matchCount = 0;
-            for (startIndex = 0; startIndex < toSearch.Length; startIndex++)
+            for (startIndex = 0; startIndex < toSearch.Length-1; startIndex++)
             {
                 matchCount = 0;
                 while (toSearch[matchCount + startIndex] == toFind[matchCount])
                 {
                     matchCount++;
                     if (toFind.Length == matchCount)
-                    {
+                    {                        
                         yield return new StringAlgMatch { StartIndex = startIndex, MatchLength = matchCount };
                         matchCount--;
                         break;

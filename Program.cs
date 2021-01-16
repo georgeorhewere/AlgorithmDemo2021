@@ -11,16 +11,35 @@ namespace AlgorithmDemo2021
         {
             Console.WriteLine("Hello World!");
 
-            NaiveSearchAlg naiveSearch = new NaiveSearchAlg();
-            string toSearch = $"The following example has a yield return statement that's inside a for loop. Each iteration of the foreach statement body in the Main method creates a call to the Power iterator function. Each call to the iterator function proceeds to the next execution of the yield return statement, which occurs during the next iteration of the for loop.";
-            string toFind = "the";
+            TestNeighbourNodes();
+           
 
-            var result = naiveSearch.FindStringMatches(toFind,toSearch);
 
-            foreach(var item in result)
-            {
-                Console.WriteLine($" match strt: {item.StartIndex }   match length: {item.MatchLength}");
-            }
+
+
+
+            //NaiveSearchAlg naiveSearch = new NaiveSearchAlg();
+            //BMYStringSearch bMYStringSearch = new BMYStringSearch();
+            //string toSearch = $"The following example has a yield return statement that's inside a for loop. Each iteration of the foreach statement body in the Main method creates a call to the Power iterator function. Each call to the iterator function proceeds to the next execution of the yield return statement, which occurs during the next iteration of the for loop.";
+            //string toFind = "the";
+
+
+            //var result = bMYStringSearch.FindStringMatches(toFind,toSearch);
+            //var result2 = naiveSearch.FindStringMatches(toFind, toSearch);
+
+
+            //Console.WriteLine($" match with BMY Search");
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($" match strt: {item.StartIndex }   match length: {item.MatchLength}");
+            //}
+
+            //Console.WriteLine($"");
+            //Console.WriteLine($" match with Naive Search");
+            //foreach (var item in result2)
+            //{
+            //    Console.WriteLine($" match strt: {item.StartIndex }   match length: {item.MatchLength}");
+            //}
 
 
 
@@ -46,9 +65,33 @@ namespace AlgorithmDemo2021
 
             //}
 
-            
-            
+
+
             Console.ReadKey();
+        }
+
+
+
+
+        static void TestNeighbourNodes()
+        {
+            string[] inputLines = new string[] { "000", "0.0", ".0." };
+            char[,] nodeGrid = new char[3, 3];
+            for (int y = 0; y < inputLines.Length; y++)
+            {
+                int x = 0;
+                foreach (char node in inputLines[y])
+                {
+                    nodeGrid[x, y] = node;
+                    x++;
+                }
+            }
+
+            var testitem = nodeGrid.Length;
+
+            Console.WriteLine($"2d Grid Length {testitem}");
+
+
         }
     }
 }
