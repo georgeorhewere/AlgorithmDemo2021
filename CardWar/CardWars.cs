@@ -87,29 +87,10 @@ namespace AlgorithmDemo2021.CardWar
 
         public void BattleMode()
         {
-
-            //Queue<string> player1BattleDeck = new Queue<string>();
-            //Queue<string> player2BattleDeck = new Queue<string>();
-
-            //for(int c = 1; c < 3; c++)
-            //{
-            //    player1BattleDeck.Enqueue(player1BattleList[c]);
-            //    player2BattleDeck.Enqueue(player2BattleList[c]);
-            //}
-
-
-
-            int x = 0;
-            string checkBattleDeck;
-
-            //while (player1BattleDeck.TryPeek(out checkBattleDeck) && player2BattleDeck.TryPeek(out checkBattleDeck))
-            //{
-            //    x++;
             string player1Hand = player1BattleList[player1BattleList.Count - 1];
             string player2Hand = player2BattleList[player2BattleList.Count - 1];
-
-            //    Console.WriteLine($"Round {x } P1 - {player1Hand } P2 -{ player2Hand}");
-            //    // get card weight 
+         
+            // get card weight 
             int card1Weight = deckMap[player1Hand.Remove(player1Hand.Length - 1, 1)];
             int card2Weight = deckMap[player2Hand.Remove(player2Hand.Length - 1, 1)];
             if (card1Weight > card2Weight)
@@ -120,7 +101,7 @@ namespace AlgorithmDemo2021.CardWar
             }
             else if (card1Weight < card2Weight)
             {
-                //              Console.WriteLine($"Round {x } : Player 2 : wins P1 - {card1Weight } P2 -{ card2Weight}");
+                // Console.WriteLine($"Round {x } : Player 2 : wins P1 - {card1Weight } P2 -{ card2Weight}");
                 player1BattleList.ForEach(ca => { player2Deck.Enqueue(ca); });
                 player2BattleList.ForEach(ca => { player2Deck.Enqueue(ca); });
             }
@@ -131,7 +112,6 @@ namespace AlgorithmDemo2021.CardWar
 
 
             }
-va
 
 
         }
