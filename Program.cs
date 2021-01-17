@@ -1,6 +1,8 @@
 ﻿using AlgorithmDemo2021.BinarySearch;
+using AlgorithmDemo2021.ListAlg;
 using AlgorithmDemo2021.StringSearch;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgorithmDemo2021
@@ -75,8 +77,8 @@ namespace AlgorithmDemo2021
 
         static void TestNeighbourNodes()
         {
-            string[] inputLines = new string[] { "000", "0.0", ".0." };
-            char[,] nodeGrid = new char[3, 3];
+            string[] inputLines = new string[] { "00", "0."};
+            char[,] nodeGrid = new char[2, 2];
             for (int y = 0; y < inputLines.Length; y++)
             {
                 int x = 0;
@@ -88,8 +90,12 @@ namespace AlgorithmDemo2021
             }
 
             var testitem = nodeGrid.Length;
+            NeighbourTests nodeSearch = new NeighbourTests();
+            List<string> res = nodeSearch.printNeighbourNodes(nodeGrid);
+            res.ForEach(Console.WriteLine);
 
-            Console.WriteLine($"2d Grid Length {testitem}");
+            Console.WriteLine("List of nodes");
+
 
 
         }
