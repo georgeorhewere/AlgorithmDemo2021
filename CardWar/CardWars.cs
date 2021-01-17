@@ -9,6 +9,8 @@ namespace AlgorithmDemo2021.CardWar
 
         private Queue<string> player1Deck;
         private Queue<string> player2Deck;
+        private List<string> player1BattleList = new List<string>();
+        private List<string> player2BattleList = new List<string>();
         Dictionary<string,int> deckMap = new Dictionary<string, int>();
 
         public CardWars()
@@ -45,22 +47,113 @@ namespace AlgorithmDemo2021.CardWar
                 else if (card1Weight < card2Weight)
                 {
       //              Console.WriteLine($"Round {x } : Player 2 : wins P1 - {card1Weight } P2 -{ card2Weight}");
-                    player2Deck.Enqueue(player2Hand);
                     player2Deck.Enqueue(player1Hand);
+                    player2Deck.Enqueue(player2Hand);
                 }
                 else
                 {
                     Console.WriteLine($"Round { x } : Enter Battle mode P1 - {card1Weight } P2 -{ card2Weight}");
+                    player1BattleList.Add(player1Hand);
+                    player2BattleList.Add(player2Hand);
+                    bool isValidBattle = true;
+                    for(int y= 0; y < 3; y++)
+                    {
+                        if (player1Deck.TryPeek(out checkDeck) && player2Deck.TryPeek(out checkDeck))
+                        {
+                            player1BattleList.Add(player1Deck.Dequeue());
+                            player2BattleList.Add(player2Deck.Dequeue());
+                        }
+                        else
+                        {
+                            isValidBattle = false;
+                            break;
+                        }
+                    }
+                    if(isValidBattle)
+                        BattleMode();
+                    else
+                        return "PAT";
                 }
 
             }
-
             //determine result
             var winner = player1Deck.TryPeek(out checkDeck) ? 1 : 2;
-            var result = $"{ winner } { x }";
-
+            var result = $"{ winner } { x }";   
 
             return $"{result}";
+        }
+
+
+
+        public void BattleMode(){
+
+            Queue<string> player1BattleDeck = new Queue<string>();
+            Queue<string> player2BattleDeck = new Queue<string>();
+
+            for(int c = 1; c < 3; c++)
+            {
+                player1BattleDeck.Enqueue(player1BattleList[c]);
+                player2BattleDeck.Enqueue(player2BattleList[c]);
+            }
+
+            int x = 0;
+            string checkBattleDeck;
+
+            while (player1BattleDeck.TryPeek(out checkBattleDeck) && player2BattleDeck.TryPeek(out checkBattleDeck))
+            {
+                x++;
+                string player1Hand = player1BattleDeck.Dequeue();
+                string player2Hand = player2BattleDeck.Dequeue();
+                //   Console.WriteLine($"Round {x } P1 - {player1Hand } P2 -{ player2Hand}");
+                // get card weight 
+                int card1Weight = deckMap[player1Hand.Remove(player1Hand.Length - 1, 1)];
+                int card2Weight = deckMap[player2Hand.Remove(player2Hand.Length - 1, 1)];
+                if (card1Weight > card2Weight)
+                {
+                    //                Console.WriteLine($"Round {x } : Player 1 : wins  P1 - {card1Weight } P2 -{ card2Weight}");
+                    player1BattleDeck.Enqueue(player1Hand);
+                    player1BattleDeck.Enqueue(player2Hand);
+
+                }
+                else if (card1Weight < card2Weight)
+                {
+                    //              Console.WriteLine($"Round {x } : Player 2 : wins P1 - {card1Weight } P2 -{ card2Weight}");
+                    player2BattleDeck.Enqueue(player1Hand);
+                    player2BattleDeck.Enqueue(player2Hand);
+                }
+                else
+                {
+                    Console.WriteLine($"Round { x } : Enter Chained Battle mode P1 - {card1Weight } P2 -{ card2Weight}");
+                    //player1BattleDeck.Add(player1Hand);
+                    //player2BattleList.Add(player2Hand);
+                    //for (int y = 0; y < 3; y++)
+                    //{
+                    //    player1BattleDeck.Add(player1Deck.Dequeue());
+                    //    player2BattleList.Add(player2Deck.Dequeue());
+                    //}
+
+
+                }
+
+            }
+            //determine result and add cards 
+            var IsPlayer1BattleWinner = player1BattleDeck.TryPeek(out checkBattleDeck);
+            if (IsPlayer1BattleWinner)
+            {
+                Console.WriteLine($"Battle Round { x } : Winner P 1");
+                player1BattleList.ForEach(g => { player1Deck.Enqueue(g); });                
+                player2BattleList.ForEach(g => { Console.WriteLine("2 - battleList " + g);  player1Deck.Enqueue(g); });
+            }
+            else
+            {
+                Console.WriteLine($"Battle Round { x } : Winner P 2");
+                player1BattleList.ForEach(g => { player2Deck.Enqueue(g); });
+                player2BattleList.ForEach(g => { player2Deck.Enqueue(g); });
+            }
+
+
+
+
         }
 
 

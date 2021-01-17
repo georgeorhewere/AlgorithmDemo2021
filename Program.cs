@@ -26,15 +26,26 @@ namespace AlgorithmDemo2021
         static void TestCardWars()
         {
             Queue<string> player1 = new Queue<string>();
-            //add cards for player 1
-            player1.Enqueue("AD");
-            player1.Enqueue("KC");
-            player1.Enqueue("QC");
+            //add cards for player 1 
+            // standard  AD KC QC
+            // Battle Mode 10D 9S 8D KH 7D 5H 6S
+            player1.Enqueue("10D");
+            player1.Enqueue("9S");
+            player1.Enqueue("8D");
+            player1.Enqueue("KH");
+            player1.Enqueue("7D");
+            player1.Enqueue("5H");
+            player1.Enqueue("6S");
             Queue<string> player2 = new Queue<string>();
-            // add ceard for player 2
-            player2.Enqueue("KH");
-            player2.Enqueue("QS");
-            player2.Enqueue("JC");
+            // add ceard for player 2 KH QS JC
+            // Battle Mode 10H 7H 5C QC 2C 4H 6D
+            player2.Enqueue("10H");
+            player2.Enqueue("7H");
+            player2.Enqueue("5C");
+            player2.Enqueue("QC");
+            player2.Enqueue("2C");
+            player2.Enqueue("4H");
+            player2.Enqueue("6D");
 
             CardWar.CardWars cardWars = new CardWar.CardWars();
             Console.WriteLine(cardWars.GameResult(player1, player2));
