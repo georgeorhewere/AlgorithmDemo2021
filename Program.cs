@@ -12,7 +12,8 @@ namespace AlgorithmDemo2021
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            TestNeighbourNodes();
+            TestCardWars();
+            // TestNeighbourNodes();
             //TestStringSearch();
             //TestBinarySearch();
 
@@ -21,6 +22,27 @@ namespace AlgorithmDemo2021
             Console.ReadKey();
         }
 
+
+        static void TestCardWars()
+        {
+            Queue<string> player1 = new Queue<string>();
+            //add cards for player 1
+            player1.Enqueue("AD");
+            player1.Enqueue("KC");
+            player1.Enqueue("QC");
+            Queue<string> player2 = new Queue<string>();
+            // add ceard for player 2
+            player2.Enqueue("KH");
+            player2.Enqueue("QS");
+            player2.Enqueue("JC");
+
+            CardWar.CardWars cardWars = new CardWar.CardWars();
+            Console.WriteLine(cardWars.GameResult(player1, player2));
+
+
+
+
+        }
         static void TestStringSearch()
         {
             NaiveSearchAlg naiveSearch = new NaiveSearchAlg();
